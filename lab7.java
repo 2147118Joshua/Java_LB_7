@@ -1,202 +1,96 @@
-import java.sql.Date;
-import java.sql.Time;
+package Java_Lab_7;
+
 import java.util.Scanner;
-import java.util.jar.Attributes.Name;
 
-import javax.crypto.KeyAgreement;
+//          LAB 07
+// 1.Any two type of inheritance (Hierarchical, Mlti level)                     - DONE
+// 2.Aggregation
+// 3.Composition
+// 4.Accessing parent class variable, method and constructor using super        - DONE
+// 5.Reusing parent constructor using super                                     - DONE                     - 
+// 6.Abstract class with constructor member and methods                         - DO
+// 7.Use final keyword in appropriate places                                    - DONE
 
-public class DairyDraw {
-    static int SumCharges;
-    static int Sal1;
-    static float Sal2;
-
-    public static void main(String[] args) {
-        DairyAdmin DairyAdmin = new DairyAdmin();
-        DairyEmployee DairyEmployee = new DairyEmployee();
-        DairyMember DairyMember = new DairyMember();
-        MilkSupplyReport MilkSupplyReport = new MilkSupplyReport();
-        RateCardReport RateCardReport = new RateCardReport();
-        Cattle Cattle = new Cattle();
-        CattleData CattleData = new CattleData();
-        FeedsStock FeedsStock = new FeedsStock();
-        MilkingManagement MilkingManagement = new MilkingManagement();
-        ManureManagement ManureManagement = new ManureManagement();
-        Hospitality Hospitality = new Hospitality();
-        Sales Sales = new Sales();
-        paymentMilker pay = new paymentMilker();
-
-        DairyAdmin.DairyAdmin_Details(123, 12, 779523352, "Joshua", "hannur", "Kar", "kar");
-        DairyAdmin.DisplayDairyAdminDetails();
-
-        Sal2 = pay.calc(2.2f, 101.5f);
-        Sal1 = pay.calc(3, 100);
-        SumCharges = pay.calc(4, 100, 35);
-        // int calc(int milkQualityRate,int Amount)
-        // float calc(float milkQualityRate,float Amount)
-
-        System.out.println("Total Salary Including Charges : " + SumCharges);
-        System.out.println("Decimal Values : " + Sal2);
-        System.out.println("Sal in int : " + Sal1);
+class LAB07 {
+    public static void main(String args[]) {
+        System.out.println("\n\n\n SET THE TOP MEMBER ");
+        member obj1 = new member();
+        obj1.rare();
+        admin obj2 = new admin();
+        obj2.rare();
+        employee obj3 = new employee();
+        obj3.rare();
 
     }
 }
 
-class DairyAdmin {
-    int DairyID, Age, PhoneNumber;
-    String AdminName, Taluk, State, Address;
+abstract class Dairy {
+    final int Dairy_id = 56021;
+    static int id = 0;
+    int a_id;
+    static String member;
+    static String employee;
 
-    public void DairyAdmin_Details(int DairyID, int Age, int PhoneNumber,
-            String AdminName, String Taluk, String State, String Address) {
-        this.DairyID = DairyID;
-        this.AdminName = AdminName;
-        this.Age = Age;
-        this.Taluk = Taluk;
-        this.State = State;
-        this.PhoneNumber = PhoneNumber;
-        this.Address = Address;
+    abstract void rare();
+
+    Dairy() {
+        id = id + 1;
+        a_id = id;
     }
 
-    void DisplayDairyAdminDetails() {
-        System.out.println(DairyID + " This is the dairy ID ");
+    void best_member() {
+        System.out.println("The Best Member of MAY 2022 is " + member);
     }
 
-}
-
-class DairyEmployee {
-    String EmployeeName, EmployeeAddress, EmployeeIncharge;
-    int DairyID, EmployeeID, EmployeeAge, EmployeePhoneNumber;
-
-    public void DairyEmployee_Details(String EmployeeName, String EmployeeAddress, String EmployeeIncharge,
-            int DairyID, int EmployeeID, int EmployeeAge, int EmployeePhoneNumber) {
-        this.DairyID = DairyID;
-        this.EmployeeID = EmployeeID;
-        this.EmployeeName = EmployeeName;
-        this.EmployeeAge = EmployeeAge;
-        this.EmployeeAddress = EmployeeAddress;
-        this.EmployeePhoneNumber = EmployeePhoneNumber;
-        this.EmployeeIncharge = EmployeeIncharge;
-
-    }
-
-}
-
-class DairyMember {
-    String MemberName, MemberAddress;
-    int DairyID, MemberID, MemberCattleID;
-
-    public void DairyMember_Details(String MemberName, String MemberAddress,
-            int DairyID, int MemberID, int MemberCattleID) {
-        this.DairyID = DairyID;
-        this.MemberID = MemberID;
-        this.MemberName = MemberName;
-        this.MemberAddress = MemberAddress;
-        this.MemberCattleID = MemberCattleID;
+    void best_employee() {
+        System.out.println("The Best Employee of MAY 2022 is " + employee + "\n");
     }
 }
 
-class MilkSupplyReport {
-    String MemberName;
-    int DairyID, MemberID, LitersOfMilkDelivered;
-    Date DateOfMilkSupplied;
-
-    public void MilkSupplyReport_Details(String MemberName,
-            int DairyID, int MemberID, int LitersOfMilkDelivered,
-            Date DateOfMilkSupplied) {
-        this.DairyID = DairyID;
-        this.MemberID = MemberID;
-        this.MemberName = MemberName;
-        this.DateOfMilkSupplied = DateOfMilkSupplied;
-        this.LitersOfMilkDelivered = LitersOfMilkDelivered;
-
+class member extends Dairy {
+    member() {
+        super();
+        System.out.println("\nDairy id : " + super.Dairy_id);
+        System.out.println("\nEntry id : " + super.a_id);
     }
 
-}
-
-class MilkingManagement {
-    int MemberID, CattleID, EmployeeID;
-    Time TimeAtWork;
-
-    public void MilkingManagement_Details(int MemberID, int CattleID, int EmployeeID,
-            Time timeAtWorkTime) {
-        this.MemberID = MemberID;
-        this.CattleID = CattleID;
-        this.EmployeeID = EmployeeID;
-        this.TimeAtWork = TimeAtWork;
-    }
-
-}
-
-class RateCardReport {
-    int DairyID, MemberID, RatechartEntry;
-    float FATbase, FATandSNFbase;
-
-    public void RateCardReport_Details(int DairyID, int MemberID, int RatechartEntry,
-            float FATbase, float FATandSNFbase) {
-        this.DairyID = DairyID;
-        this.MemberID = MemberID;
-        this.FATbase = FATbase;
-        this.FATandSNFbase = FATandSNFbase;
-        this.RatechartEntry = RatechartEntry;
+    void rare() {
+        System.out.print("\nEnter the Best Member of MAY 2022 : ");
+        Scanner sc = new Scanner(System.in);
+        member = sc.nextLine();
+        super.best_member();
+        System.out.println("The Best Member of April was John");
 
     }
 }
 
-class Cattle {
-    int DairyID, MemberID, CattleID, EmployeeID, TotalPopulation;
-    String Type;
+class admin extends Dairy {
+    admin() {
+        super();
+        System.out.println("\nEntry id : " + super.a_id);
+    }
 
-    public void Cattle_Details(int DairyID, int MemberID, int CattleID, int EmployeeID, int TotalPopulation,
-            String Type) {
-        this.DairyID = DairyID;
-        this.MemberID = MemberID;
-        this.CattleID = CattleID;
-        this.EmployeeID = EmployeeID;
-        this.Type = Type;
-        this.TotalPopulation = TotalPopulation;
+    void rare() {
+        System.out.print("\nEnter the Best Employee of MAY 2022 : ");
+        Scanner sc1 = new Scanner(System.in);
+        employee = sc1.nextLine();
+        super.best_employee();
+        System.out.println("The Best Employee of April was Rahul");
+
     }
 }
 
-class CattleData {
-
-}
-
-class FeedsStock {
-
-}
-
-class ManureManagement {
-
-}
-
-class Hospitality {
-
-}
-
-class Sales {
-
-}
-
-class paymentMilker {
-    String Name;
-    int milkQualityRate, Amount, Charges;
-
-    public void paymentDetails(String Name, int milkQualityRate, int Amount, int Charges) {
-        this.Name = Name;
-        this.milkQualityRate = milkQualityRate;
-        this.Amount = Amount;
-        this.Charges = Charges;
+class employee extends member {
+    employee() {
+        super();
+        System.out.println("\nEntry id : " + super.a_id);
     }
 
-    int calc(int milkQualityRate, int Amount) {
-        return (milkQualityRate + Amount);
-    }
+    void rare() {
+        System.out.print("Enter the Second Best Emplyee of MAY 2022 : ");
+        Scanner sc1 = new Scanner(System.in);
+        employee = sc1.nextLine();
+        super.best_employee();
 
-    float calc(float milkQualityRate, float Amount) {
-        return (milkQualityRate + Amount);
     }
-
-    int calc(int milkQualityRate, int Amount, int Charges) {
-        return (milkQualityRate + Amount + Charges);
-    }
-
 }
