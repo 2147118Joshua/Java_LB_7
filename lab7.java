@@ -8,7 +8,7 @@ import java.util.Scanner;
 // 3.Composition
 // 4.Accessing parent class variable, method and constructor using super        - DONE
 // 5.Reusing parent constructor using super                                     - DONE                     - 
-// 6.Abstract class with constructor member and methods                         - DO
+// 6.Abstract class with constructor member and methods                         - DONE
 // 7.Use final keyword in appropriate places                                    - DONE
 
 class LAB07 {
